@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Prezent</title>
+</head>
+<body>
+    <div id="app">
+        <h1 style="text-align: center;margin-bottom: 0;" >Witaj kochanie</h1>
+        <h1 style="text-align: center;margin-top: 0;">To prezent dla ciebie</h1>
+        
+        <div class="PIN_input">
+            <h3 class="PIN_name">PIN:</h3>
+            <div class="pin-container">
+                <input type="text" maxlength="2" v-model="pin1" @input="savePinAndCheck" placeholder="00">
+                <input type="text" maxlength="2" v-model="pin2" @input="savePinAndCheck" placeholder="00">
+                <input type="text" maxlength="2" v-model="pin3" @input="savePinAndCheck" placeholder="00">
+                <input type="text" maxlength="2" v-model="pin4" @input="savePinAndCheck" placeholder="00">
+                <input type="text" maxlength="2" v-model="pin5" @input="savePinAndCheck" placeholder="00">
+            </div>   
+        </div>
+            
+        <div class="error-message" v-if="showError">
+            Nieprawidłowy PIN!
+        </div>
+
+
+        <div class="Podpowiedz">
+            <h3 class="Podpowiedz_name">Podpowiedz:</h3>
+            <p class="Podpowiedz_text">K...m  C...e  S...e  C...m  S...m</p>
+        </div>
+
+        <div class="slownik">
+            <h3 class="slownik_name">Słownik:</h3>
+            <button class="slownik_button" @click="showDictionary">OPEN</button>
+            <!-- <div v-if="isDictionaryVisible" class="dictionary-content">
+                {{ dictionaryText }}
+            </div> -->
+        </div>
+
+        <div class="zagadki">
+            <button class="zagadka_button" @click="showZagadka1">Zagadka 1</button>
+            <button class="zagadka_button" @click="showZagadka2">Zagadka 2</button>
+            <button class="zagadka_button" @click="showZagadka3">Zagadka 3</button>
+            <button class="zagadka_button" @click="showZagadka4">Zagadka 4</button>
+            <button class="zagadka_button" @click="showZagadka5">Zagadka 5</button>
+        </div>
+
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    pin1: localStorage.getItem('pin1') || '',
+                    pin2: localStorage.getItem('pin2') || '',
+                    pin3: localStorage.getItem('pin3') || '',
+                    pin4: localStorage.getItem('pin4') || '',
+                    pin5: localStorage.getItem('pin5') || '',
+                    showError: false,
+                    correctPin: '4352187829'
+                }
+            },
+            methods: {
+                savePinAndCheck() {
+                    // Save each PIN segment to localStorage
+                    localStorage.setItem('pin1', this.pin1);
+                    localStorage.setItem('pin2', this.pin2);
+                    localStorage.setItem('pin3', this.pin3);
+                    localStorage.setItem('pin4', this.pin4);
+                    localStorage.setItem('pin5', this.pin5);
+                    
+                    // Original PIN check logic
+                    this.pin = this.pin1 + this.pin2 + this.pin3 + this.pin4 + this.pin5;
+                    
+                    if (this.pin === this.correctPin) {
+                        window.location.href = 'losowo.html'
+                    } else {
+                        if(this.pin.length === 10) {
+                            this.showError = true
+                        } else {
+                            this.showError = false
+                        }
+                    }
+                },
+                showDictionary() {
+                    window.location.href = 'slownik.html'
+                },
+                showZagadka1() {
+                    window.location.href = 'Zagadka_1.html'
+                },
+                showZagadka2() {
+                    window.location.href = 'Zagadka_2.html'
+                },
+                showZagadka3() {
+                    window.location.href = 'Zagadka_3.html'
+                },
+                showZagadka4() {
+                    window.location.href = 'Zagadka_4.html'
+                },
+                showZagadka5() {
+                    window.location.href = 'Zagadka_5.html'
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

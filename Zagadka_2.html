@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Zagadka_1</title>
+</head>
+<body>
+   
+    <div id="app">
+        <button class="back_button" @click="backToMain">&lt;----</button>
+
+        <h1 style="text-align: center;">Zagadka 2</h1>
+
+        <p style="text-align: justify; margin-inline: 15px;">Zatrzymał się czas pod starym drzewem.
+            Gdy padły słowa, co wszystko zmieniły.
+            Zamiast gnać za światłem i dźwiękiem fontann.
+            Siedzieliśmy tam, gdzie serca się połączyły.</p>
+        
+        <div style="margin-left: auto; margin-right: auto; width: fit-content;">
+            <input class="day_style_2" type="text" id="day" placeholder=".." maxlength="2" style="width: 28px;">
+            <input class="month_style_2" type="text" id="month" placeholder=".." maxlength="2" style="width: 28px;">
+            <input class="year_style_2" type="text" id="year" placeholder="...." maxlength="4" style="width: 50px;">
+            <button class="submit_style_2" id="submit" @click="checkAnswer">Sprawdź</button>
+            <p v-if="isCorrect" style="color: green; text-align: center;">Hasło to: Sercem</p>
+            <p v-if="!isCorrect && submitted" style="color: red; text-align: center;">Spróbuj ponownie!</p>
+        </div>
+
+        <div style="width: 100%; display: flex; justify-content: center;">
+            <button class="podpowiedz_zgadka2" @click="showDictionary">Podpowiedz 1</button>
+        </div>
+
+        <div class="hints-container">
+            <div class="hint" v-if="showHint1">
+                <h3>Podpowiedź 1:</h3>
+                <p style="text-align:justify;">
+                    Wsłuchaj się w szept słów, w ich ukryty rytm i melodię. 
+                    Wypatrz datę, która czai się między wierszami, jak 
+                    cień na granicy światła i mroku. .</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    correctDate: {
+                        day: '15',
+                        month: '06',
+                        year: '2024'
+                    },
+                    isCorrect: false,
+                    submitted: false,
+                    showHint1: false
+                };
+            },
+            methods: {
+                checkAnswer() {
+                    const userDay = document.getElementById('day').value;
+                    const userMonth = document.getElementById('month').value;
+                    const userYear = document.getElementById('year').value;
+                    
+                    this.submitted = true;
+                    this.isCorrect = (
+                        userDay === this.correctDate.day &&
+                        userMonth === this.correctDate.month &&
+                        userYear === this.correctDate.year
+                    );
+                },
+                backToMain() {
+                    window.location.href = 'index.html';
+                },
+                showDictionary() {
+                    if (!this.showHint1) {
+                        this.showHint1 = true;
+                    }
+                    else {
+                        this.showHint1 = false;
+                    }
+                }
+            }
+        });
+        app.mount('#app');
+    </script>
+    
+</body>
+</html>

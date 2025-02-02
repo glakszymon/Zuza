@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <title>Prezent</title>
+    </head>
+    <body>
+        <div id="app">
+            <div >
+                <button class="back_button" @click="backToMain">&lt;----</button>
+                <h1 class="header">Słownik</h1>
+            </div>
+            <div class="list">
+                <div class="list_item" v-for="item in dictionary" :key="item.id">
+                    <p class="item">{{ item.name }}</p>
+                    <p class="item">{{ item.description }}</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const { createApp } = Vue
+            createApp({
+                data() {
+                    return {
+                        dictionary: [
+                            { id: 1, name: 'Całym', description: '78' },
+                            { id: 2, name: 'Chmury', description: '24' },
+                            { id: 3, name: 'Chwila', description: '21' },
+                            { id: 4, name: 'Ciepło', description: '32' },
+                            { id: 5, name: 'Ciepły', description: '58' },
+                            { id: 6, name: 'Ciebie', description: '52' },
+                            { id: 7, name: 'Deszcz', description: '14' },
+                            { id: 8, name: 'Dłoń', description: '57' },
+                            { id: 9, name: 'Dom', description: '90' },
+                            { id: 10, name: 'Drzewo', description: '52' },
+                            { id: 11, name: 'Droga', description: '73' },
+                            { id: 12, name: 'Dzieci', description: '97' },
+                            { id: 13, name: 'Dzień', description: '45' },
+                            { id: 14, name: 'Dotyk', description: '87' },
+                            { id: 15, name: 'Gwiazda', description: '15' },
+                            { id: 16, name: 'Góry', description: '20' },
+                            { id: 17, name: 'Kawa', description: '84' },
+                            { id: 18, name: 'Kochanie', description: '14' },
+                            { id: 19, name: 'Kocham', description: '43' },
+                            { id: 20, name: 'Kraina', description: '68' },
+                            { id: 21, name: 'Królik', description: '67' },
+                            { id: 22, name: 'Księżyc', description: '18' },
+                            { id: 23, name: 'Książka', description: '69' },
+                            { id: 24, name: 'Kwiat', description: '20' },
+                            { id: 25, name: 'Kwiatki', description: '12' },
+                            { id: 26, name: 'Miasto', description: '73' },
+                            { id: 27, name: 'Miłość', description: '04' },
+                            { id: 28, name: 'Mrok', description: '53' },
+                            { id: 29, name: 'Morze', description: '54' },
+                            { id: 30, name: 'Nadzieja', description: '89' },
+                            { id: 31, name: 'Noc', description: '46' },
+                            { id: 32, name: 'Nowy', description: '52' },
+                            { id: 33, name: 'Obraz', description: '74' },
+                            { id: 34, name: 'Piękno', description: '72' },
+                            { id: 35, name: 'Piosenka', description: '34' },
+                            { id: 36, name: 'Pies', description: '36' },
+                            { id: 37, name: 'Płomień', description: '05' },
+                            { id: 38, name: 'Podróż', description: '64' },
+                            { id: 39, name: 'Pokój', description: '53' },
+                            { id: 40, name: 'Przeznaczenie', description: '24' },
+                            { id: 41, name: 'Przeżycie', description: '36' },
+                            { id: 42, name: 'Przyjaźń', description: '94' },
+                            { id: 43, name: 'Pustka', description: '95' },
+                            { id: 44, name: 'Pustynia', description: '70' },
+                            { id: 45, name: 'Radość', description: '94' },
+                            { id: 46, name: 'Rytm', description: '20' },
+                            { id: 47, name: 'Słodki', description: '91' },
+                            { id: 48, name: 'Sercem', description: '29' },
+                            { id: 49, name: 'Skarbie', description: '18' },
+                            { id: 50, name: 'Słońce', description: '51' },
+                            { id: 51, name: 'Słowa', description: '38' },
+                            { id: 52, name: 'Stół', description: '64' },
+                            { id: 53, name: 'Tęcza', description: '58' },
+                            { id: 54, name: 'Tęsknota', description: '68' },
+                            { id: 55, name: 'Tylko', description: '61' },
+                            { id: 56, name: 'Wiara', description: '58' },
+                            { id: 57, name: 'Wiatr', description: '83' },
+                            { id: 58, name: 'Woda', description: '24' },
+                            { id: 59, name: 'Wschód', description: '46' },
+                            { id: 60, name: 'Zabawka', description: '83' },
+                            { id: 61, name: 'Zamek', description: '24' },
+                            { id: 62, name: 'Ziemia', description: '85' },
+                            { id: 63, name: 'Zimowy', description: '13' },
+                            { id: 64, name: 'Złoto', description: '83' },
+                            { id: 65, name: 'Złudzenie', description: '09' },
+                            { id: 66, name: 'Żar', description: '29' },
+                            { id: 67, name: 'Życie', description: '15' },
+                            { id: 68, name: 'Zegar', description: '89' },
+                            { id: 69, name: 'Zmysły', description: '50' },
+                            { id: 70, name: 'Zima', description: '15' },
+                            { id: 71, name: 'Kiedy', description: '97' },
+                            { id: 72, name: 'Zaskoczenie', description: '19' },
+                            { id: 73, name: 'Lampa', description: '84' },
+                            { id: 74, name: 'Lody', description: '83' },
+                            { id: 75, name: 'Plama', description: '57' },
+                            { id: 76, name: 'Łódź', description: '92' },
+                            { id: 77, name: 'Korona', description: '37' },
+                            { id: 78, name: 'Motyl', description: '12' },
+                            { id: 79, name: 'Żniwa', description: '42' },
+                            { id: 80, name: 'Akcja', description: '20' },
+                            { id: 81, name: 'Zawód', description: '16' },
+                            { id: 82, name: 'Szybko', description: '40' },
+                            { id: 83, name: 'Płyn', description: '31' },
+                            { id: 84, name: 'Zamek', description: '19' },
+                            { id: 85, name: 'Pokaz', description: '63' },
+                            { id: 86, name: 'Wybór', description: '88' },
+                            { id: 87, name: 'Wiatrak', description: '71' },
+                            { id: 88, name: 'Plan', description: '76' },
+                            { id: 89, name: 'Rzeka', description: '93' },
+                            { id: 90, name: 'Jezioro', description: '65' },
+                            { id: 91, name: 'Królewna', description: '12' },
+                            { id: 92, name: 'Zimny', description: '07' },
+                            { id: 93, name: 'Kwiat', description: '87' },
+                            { id: 94, name: 'Nałóg', description: '65' },
+                            { id: 95, name: 'Okno', description: '24' },
+                            { id: 96, name: 'Las', description: '41' },
+                            { id: 97, name: 'Pięść', description: '52' }
+                        ]
+                    }
+                },
+                methods: {
+                    backToMain() {
+                        window.location.href = 'index.html';
+                    }
+                }
+            }).mount('#app')
+        </script>
+    </body>
+
+</html>

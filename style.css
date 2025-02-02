@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+* {
+    font-family: "Roboto Mono", monospace;
+}
+
+.roboto-mono-home {
+    font-family: "Roboto Mono", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.PIN_input{
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#PIN{
+    width: 100%;
+    margin-inline: 10px;
+}
+
+.Podpowiedz{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    /* flex-direction: column; */
+}
+.Podpowiedz_text{
+    width: 100%;
+    margin-inline: 10px;
+    font-size: 15px;
+}
+
+.slownik{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    /* flex-direction: column; */
+}
+
+.slownik_button{
+    width: 100%;
+    margin-inline: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.zagadki{
+    width: 100%;
+}
+
+.zagadka_button{
+    margin-top: 20px;
+    /* width: 100%; */
+    width: 100%;
+    /* margin-left: 10px;
+    margin-right: 10px; */
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.list_item{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid rgba(170, 170, 170, 0.479);
+    /* padding-inline: 10px; */
+    text-align: center;
+    padding: 0;
+    
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* font-size: 20px; */
+}
+
+.item{
+    padding: 0;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-weight: 800;
+}
+
+
+.pin-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.pin-container input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.tekst_zagadka1{
+    margin: 10px;
+    text-align: justify;
+}
+
+.grid_button_zagadka1{
+    display: flex;
+    justify-content: center;
+}
+
+.podpowiedz_zgadka1_1, .podpowiedz_zgadka1_2{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.hints-container {
+    margin: 20px;
+}
+
+.hint {
+    background-color: #f5f5f5;
+    padding: 30px;
+    border-radius: 8px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.hint h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+
+.day_style_2, .month_style_2, .year_style_2, .submit_style_2{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 15px;
+    text-align: justify;
+    text-align: center;
+}
+
+.podpowiedz_zgadka2{
+    text-align: center;
+    
+}
+
+.morse{
+    width: 65px;
+    margin-inline: 15px;
+}
+
+.morse-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.letter{
+    /* margin-right: 100%; */
+    /* margin-left: auto; */
+    width: 200px;
+    height: 40px;
+    font-size: large;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.lista_liter{
+    /* margin-top: 100px;; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.podpowiedz_zgadka3_1{
+    margin-top: 50px;
+}
+
+.mason-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mason{
+    width: 100%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.podpowiedz_zgadka4_1{
+    margin-top: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 15px;
+
+    cursor: pointer;
+}

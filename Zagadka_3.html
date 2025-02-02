@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Zagadka_1</title>
+</head>
+<body>
+   
+    <div id="app">
+        <button class="back_button" @click="backToMain">&lt;----</button>
+
+        <h1 style="text-align: center;">Zagadka 3</h1>
+
+        <!-- ------------------------------------------------------------------------ -->
+
+        <div class="morse-container">
+            <img :src="currentImage1" alt="morse Image" class="morse" >
+            <img :src="currentImage2" alt="morse Image" class="morse" >
+            <img :src="currentImage3" alt="morse Image" class="morse" >
+            <img :src="currentImage4" alt="morse Image" class="morse" >
+            
+            <!-- <div class="button-container">
+                <button @click="changeImage('prev')" class="nav-button">Poprzednie</button>
+                <button @click="changeImage('next')" class="nav-button">Następne</button>
+            </div> -->
+        </div>
+
+        <div class="lista_liter">
+            <button class="letter" @click="showLetter1">Przycisk 1</button>
+            <button class="letter" @click="showLetter2">Przycisk 2</button>
+            <button class="letter" @click="showLetter3">Przycisk 3</button>
+            <button class="letter" @click="showLetter4">Przycisk 4</button>
+            <button class="letter" @click="showLetter5">Przycisk 5</button>
+            <button class="letter" @click="showLetter6">Przycisk 6</button>
+            <button class="podpowiedz_zgadka3_1 letter" @click="showDictionary">Podpowiedz 1</button>
+        </div>
+
+        <!-- ------------------------------------------------------------------------ -->
+
+
+        <div class="hints-container">
+            <div class="hint" v-if="showHint1">
+                <h3>Podpowiedź 1:</h3>
+                    <p style="text-align:justify; margin: 0;">    Gdy lampka włączona – to kropka się świeci,</p>
+                    <p style="text-align:justify; margin: 0;">    Gdy zgaśnie – kreska w ciemności zaświeci. </p>
+                    <p style="text-align:justify; margin: 0;">    Lecz gdy wybuchnie, znak zniknie bez śladu, </p>
+                    <p style="text-align:justify; margin: 0;">    Odszyfruj wiadomość, a znajdziesz skład klucza do układu.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    showHint1: false,
+                    currentImageIndex1: 0,
+                    currentImageIndex2: 0,
+                    currentImageIndex3: 0,
+                    currentImageIndex4: 0,
+                    images: [
+                        'images/explosion.png',
+                        'images/light-bulb.png',
+                        'images/light-bulb(1).png',
+                    ]
+                };
+            },
+            computed: {
+                currentImage1() {
+                    return this.images[this.currentImageIndex1];
+                },
+                currentImage2() {
+                    return this.images[this.currentImageIndex2];
+                },
+                currentImage3() {
+                    return this.images[this.currentImageIndex3];
+                },
+                currentImage4() {
+                    return this.images[this.currentImageIndex4];
+                }
+            },
+            methods: {
+                backToMain() {
+                    window.location.href = 'index.html';
+                },
+                showLetter1(){
+                    this.currentImageIndex1 = 2;
+                    this.currentImageIndex2 = 1;
+                    this.currentImageIndex3 = 2;
+                    this.currentImageIndex4 = 1;
+                },
+                showLetter2(){
+                    this.currentImageIndex1 = 1;
+                    this.currentImageIndex2 = 1;
+                    this.currentImageIndex3 = 0;
+                    this.currentImageIndex4 = 0;
+                },
+                showLetter3(){
+                    this.currentImageIndex1 = 1;
+                    this.currentImageIndex2 = 0;
+                    this.currentImageIndex3 = 0;
+                    this.currentImageIndex4 = 0;
+                },
+                showLetter4(){
+                    this.currentImageIndex1 = 2;
+                    this.currentImageIndex2 = 1;
+                    this.currentImageIndex3 = 1;
+                    this.currentImageIndex4 = 1;
+                },
+                showLetter5(){
+                    this.currentImageIndex1 = 1;
+                    this.currentImageIndex2 = 1;
+                    this.currentImageIndex3 = 0;
+                    this.currentImageIndex4 = 0;
+                },
+                showLetter6(){
+                    this.currentImageIndex1 = 1;
+                    this.currentImageIndex2 = 0;
+                    this.currentImageIndex3 = 0;
+                    this.currentImageIndex4 = 0;
+                },
+                showDictionary() {
+                    this.showHint1 = !this.showHint1;
+                }
+            }
+        });
+        app.mount('#app');
+    </script>
+    
+</body>
+</html>

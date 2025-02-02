@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Zagadka_1</title>
+</head>
+<body>
+    
+    <div id="app">
+        <button class="back_button" @click="backToMain">&lt;----</button>
+        <h1 style="text-align: center;">Zagadka 1</h1>
+
+        <p class="tekst_zagadka1">
+            Gdy wieczór zapada, a ludzie się gromadzą,
+            Kapela gra, a serca rytm odnajdują.
+            Wśród dźwięków skrzypiec i bębnów huku,
+            Jakie słowo w dziesiątej linijce szuka?
+            Drugie w kolejce, lecz pierwsze w emocji,
+            Gdy muzyka płynie, a czas się zatrzymuje.
+        </p>
+
+        <p class="tekst_zagadka1">
+            A ta, co słowem i dźwiękiem czaruje,
+            To artystka, której imię zaczyna się na S,
+            A kończy na H. Jej utwory inspirują,
+            A głos jak wiatr, co wśród pól się snuje.
+            Polska gwiazda, co w muzyce się pasuje,
+            Ona to wie, jak nas wzruszać i wzruszać."
+        </p>
+
+        <div clas="grid_button_zagadka1">
+            <div style="width: 100%; text-align: center;">
+                <button class="podpowiedz_zgadka1_1" @click="showDictionary">Podpowiedz 1</button>
+                <button class="podpowiedz_zgadka1_2" @click="showZagadka2">Podpowiedz 2</button>
+            </div>
+
+        </div>
+
+        <div class="hints-container">
+            <div class="hint" v-if="showHint1">
+                <h3>Podpowiedź 1:</h3>
+                <p style="text-align:justify;">Kapela gra, a dźwięki płyną,  
+                    w nich tajemnica, co w sercu ginie.  
+                    Słowo-klucz wśród nut się chowa,  
+                    to odpowiedź, co w tobie wschodzi znów.  </p><p style="text-align:justify;">
+                    
+                    Głos twej ulubionej jak szept z oddali,  
+                    w rytm kapeli serce się ocali.  
+                    Szukaj w melodii, w jej cichym tle,  
+                    tam, gdzie gra kapela, znajdziesz ich tyle.</p>
+            </div>
+            
+            <div class="hint" v-if="showHint2">
+                <h3>Podpowiedź 2:</h3>
+                <p style="text-align:justify;">W dziesiątej linii, w drugim słowie,
+                    klucz do tajemnicy czeka w gotowości.
+                    Odsłoń go, a świat nowy się zowie,
+                    w melodyjnym wirze wiecznej miłości.</p>
+            </div>
+        </div>
+        
+
+    </div>
+
+    <script>
+        const { createApp } = Vue
+        createApp({
+                data() {
+                    return {
+                        showHint1: false,
+                        showHint2: false
+                    }           
+                },
+                methods: {
+                    showDictionary() {
+                        this.showHint1 = !this.showHint1;
+                    },
+                    showZagadka2() {
+                        this.showHint2 = !this.showHint2;
+                    },
+                    backToMain() {
+                        window.location.href = 'index.html';
+                    }
+                }
+            }).mount('#app')
+    </script>
+
+</body>
+</html>

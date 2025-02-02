@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Czas od prezentu</title>
+</head>
+<body>
+    <div class="floating-hearts"></div>
+
+    <div id="app">
+        <div class="countdown">
+            <h1>Jesteśmy razem już:</h1>
+            <div class="timer">
+                <p>{{ days }} dni</p>
+                <p>{{ hours }} godzin</p>
+                <p>{{ minutes }} minut</p>
+                <div class="seconds-container">
+                    <p>{{ seconds }} sekund</p>
+                    <span class="heart" :class="{ 'pop': showHeart }">❤️</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dodany pokaz zdjęć -->
+        <div class="slideshow" @mouseenter="stopAutoScroll" @mouseleave="startAutoScroll">
+            <img :src="images[currentImageIndex]" 
+                 alt="Zdjęcie" 
+                 class="slideshow-image"
+                 @click="togglePause"
+                 :class="{ 'paused': isPaused }">
+            
+            <!-- <img :src="images[currentImageIndex]" alt="Zdjęcie" class="slideshow-image"> -->
+            <div class="slideshow-controls">
+                <button @click="previousImage" class="slideshow-button">&#10094;</button>
+                <button @click="nextImage" class="slideshow-button">&#10095;</button>
+            </div>
+        </div>
+
+        <img src="./images/roses.png" alt="Zdjęcie" class="roses_stack">
+        <img src="./images/roses.png" alt="Zdjęcie" class="roses_stack2">
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    startDate: new Date('2024-06-15T19:00:00'),
+                    days: 0,
+                    hours: 0,
+                    minutes: 0,
+                    seconds: 0,
+                    showHeart: false,
+                    isPaused: false,
+                    autoScrollInterval: null,
+                    images: [
+                        './pokazPhoto/25.jpeg',
+                        './pokazPhoto/20.jpeg',
+                        './pokazPhoto/2.jpeg',
+                        './pokazPhoto/3.jpeg',
+                        './pokazPhoto/4.jpg',
+                        './pokazPhoto/1.jpeg',
+                        './pokazPhoto/5.jpg',
+                        './pokazPhoto/6.jpg',
+                        './pokazPhoto/7.jpg',
+                        './pokazPhoto/8.jpg',
+                        './pokazPhoto/9.jpg',
+                        './pokazPhoto/10.jpg',
+                        './pokazPhoto/11.jpg',
+                        './pokazPhoto/12.jpeg',
+                        './pokazPhoto/13.jpeg',
+                        './pokazPhoto/14.jpeg',
+                        './pokazPhoto/15.jpeg',
+                        './pokazPhoto/16.jpeg',
+                        './pokazPhoto/17.jpeg',
+                        './pokazPhoto/18.jpeg',
+                        './pokazPhoto/19.jpeg',
+                        './pokazPhoto/21.jpeg',
+                        './pokazPhoto/22.jpeg',
+                        './pokazPhoto/23.jpeg',
+                        './pokazPhoto/24.jpeg',
+                        './pokazPhoto/26.jpeg',
+                        './pokazPhoto/27.jpeg',
+                        './pokazPhoto/28.jpeg',
+                        './pokazPhoto/29.jpeg',
+                        './pokazPhoto/30.jpeg',
+                        // Dodaj więcej ścieżek do zdjęć
+                    ],
+                    currentImageIndex: 0
+                };
+            },
+            methods: {
+                calculateTimeElapsed() {
+                    const now = new Date();
+                    const difference = now - this.startDate;
+
+                    if (difference > 0) {
+                        this.days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                        this.hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        this.minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                        this.seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                        
+                        this.showHeart = true;
+                        setTimeout(() => {
+                            this.showHeart = false;
+                        }, 500);
+                    }
+                },
+                nextImage() {
+                    this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+                },
+                previousImage() {
+                    this.currentImageIndex = (this.currentImageIndex - 1 + this.images.length) % this.images.length;
+                },
+                startAutoScroll() {
+                    if (!this.isPaused) {
+                        this.autoScrollInterval = setInterval(() => {
+                            this.nextImage();
+                        }, 5000);
+                    }
+                },
+                
+                stopAutoScroll() {
+                    clearInterval(this.autoScrollInterval);
+                },
+                
+                togglePause() {
+                    this.isPaused = !this.isPaused;
+                    if (this.isPaused) {
+                        this.stopAutoScroll();
+                    } else {
+                        this.startAutoScroll();
+                    }
+                }
+            },
+            mounted() {
+                setInterval(this.calculateTimeElapsed, 1000);
+                this.calculateTimeElapsed();
+                this.startAutoScroll();
+            }
+        });
+        app.mount('#app');
+
+        function createHeart() {
+        const heart = document.createElement('div');
+        heart.innerHTML = '❤️';
+        heart.classList.add('heart-particle');
+        
+        const startX = window.innerWidth / 2;
+        const startY = window.innerHeight / 2;
+        
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.min(window.innerWidth, window.innerHeight);
+        const targetX = Math.cos(angle) * distance;
+        const targetY = Math.sin(angle) * distance;
+        
+        heart.style.setProperty('--tx', `${targetX}px`);
+        heart.style.setProperty('--ty', `${targetY}px`);
+        heart.style.left = `${startX}px`;
+        heart.style.top = `${startY}px`;
+        
+        document.querySelector('.floating-hearts').appendChild(heart);
+        
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }
+
+    window.addEventListener('load', () => {
+        // Początkowy wybuch serc
+        for (let i = 0; i < 1000; i++) {
+            setTimeout(() => {
+                createHeart();
+            }, i * 5);
+        }
+
+        setInterval(() => {
+            for (let i = 0; i < 10; i++) {
+                createHeart();
+            }
+        }, 3000);
+        
+    });
+
+
+    </script>
+    
+    <style>
+        .countdown {
+            text-align: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .timer p {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff69b4;
+        }
+        .seconds-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .heart {
+            position: absolute;
+            right: 35px;
+            font-size: 24px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.5s ease;
+        }
+        .heart.pop {
+            animation: popHeart 0.5s ease;
+        }
+        @keyframes popHeart {
+            0% {
+                opacity: 0;
+                transform: scale(0) translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5) translateY(-40px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1) translateY(-80px);
+            }
+        }
+
+        /* Style dla pokazu zdjęć */
+        .slideshow {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .slideshow-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .slideshow-controls {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .slideshow-button {
+            background-color: rgba(255,255,255,0.8);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .slideshow-button:hover {
+            background-color: rgba(255,255,255,1);
+        }
+        .slideshow-image.paused {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        .slideshow-image.paused::after {
+            content: "⏸️";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            color: rgb(255, 255, 255);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .heart-particle {
+            position: fixed;
+            font-size: 64px;
+            animation: floatHeart 4s ease-in-out;
+            opacity: 0;
+        }
+
+
+        @keyframes floatHeart {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .roses_stack {
+            /* width: 100%; */
+            position: absolute;
+            top: 600px;
+            height: 200px;
+            left: -93px;
+            rotate: 35deg;
+        }
+
+        .roses_stack2 {
+            /* width: 100%; */
+            position: absolute;
+            top: 600px;
+            height: 200px;
+            right: -93px;
+            rotate: -35deg;
+        }
+
+    </style>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Zagadka_1</title>
+</head>
+<body>
+   
+    <div id="app">
+        <button class="back_button" @click="backToMain">&lt;----</button>
+
+        <h1 style="text-align: center;">Zagadka 4</h1>
+
+        <!-- ------------------------------------------------------------------------ -->
+
+        <div class="mason-container">
+            <img src="./images/Zrzut ekranu z 2025-02-02 14-03-22.png" class="mason" >
+            
+            <!-- <div class="button-container">
+                <button @click="changeImage('prev')" class="nav-button">Poprzednie</button>
+                <button @click="changeImage('next')" class="nav-button">Następne</button>
+            </div> -->
+        </div>
+
+
+        <!-- ------------------------------------------------------------------------ -->
+        
+        <div style="display: flex; justify-content: center;">
+            <button class="podpowiedz_zgadka4_1" @click="showDictionary">Podpowiedz 1</button>
+        </div>
+
+        <div class="hints-container">
+            <div class="hint" v-if="showHint1">
+                <h3>Podpowiedź 1:</h3>
+                    <p style="text-align:justify;">    Choć liter wiele w nim się skrywa,  
+                        to tajemnica wciąż w nim bywa.  
+                        Znaki i kreski – układ magiczny,  
+                        klucz do sekretów wręcz mistyczny.   </p>
+                        
+                        <p style="text-align:justify; ">    Gdy mason ślad swój gdzieś zostawi,  
+                        w tym szyfrze prawdę ci postawi.  
+                        Chcesz go odczytać? Spróbuj, śmiało!  
+                        Lecz to zadanie nie byle jakie mało.  </p>
+        
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    showHint1: false,
+                };
+            },
+            methods: {
+                backToMain() {
+                    window.location.href = 'index.html';
+                },
+                showDictionary() {
+                    this.showHint1 = !this.showHint1;
+                }
+            }
+        });
+        app.mount('#app');
+    </script>
+    
+</body>
+</html>
