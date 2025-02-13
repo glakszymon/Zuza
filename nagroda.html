@@ -25,11 +25,10 @@
         </div>
 
         <!-- Dodany pokaz zdjęć -->
-        <div class="slideshow" @mouseenter="stopAutoScroll" @mouseleave="startAutoScroll">
+        <div class="slideshow">
             <img :src="images[currentImageIndex]" 
                  alt="Zdjęcie" 
                  class="slideshow-image"
-                 @click="togglePause"
                  :class="{ 'paused': isPaused }">
             
             <!-- <img :src="images[currentImageIndex]" alt="Zdjęcie" class="slideshow-image"> -->
@@ -119,31 +118,31 @@
                 previousImage() {
                     this.currentImageIndex = (this.currentImageIndex - 1 + this.images.length) % this.images.length;
                 },
-                startAutoScroll() {
-                    if (!this.isPaused) {
-                        this.autoScrollInterval = setInterval(() => {
-                            this.nextImage();
-                        }, 5000);
-                    }
-                },
+                // startAutoScroll() {
+                //     if (!this.isPaused) {
+                //         this.autoScrollInterval = setInterval(() => {
+                //             this.nextImage();
+                //         }, 5000);
+                //     }
+                // },
                 
-                stopAutoScroll() {
-                    clearInterval(this.autoScrollInterval);
-                },
+                // stopAutoScroll() {
+                //     clearInterval(this.autoScrollInterval);
+                // },
                 
-                togglePause() {
-                    this.isPaused = !this.isPaused;
-                    if (this.isPaused) {
-                        this.stopAutoScroll();
-                    } else {
-                        this.startAutoScroll();
-                    }
-                }
+                // togglePause() {
+                //     this.isPaused = !this.isPaused;
+                //     if (this.isPaused) {
+                //         this.stopAutoScroll();
+                //     } else {
+                //         this.startAutoScroll();
+                //     }
+                // }
             },
             mounted() {
                 setInterval(this.calculateTimeElapsed, 1000);
                 this.calculateTimeElapsed();
-                this.startAutoScroll();
+                // this.startAutoScroll();
             }
         });
         app.mount('#app');
@@ -266,8 +265,8 @@
             background-color: rgba(255,255,255,0.8);
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             font-size: 20px;
             cursor: pointer;
             transition: background-color 0.3s;
